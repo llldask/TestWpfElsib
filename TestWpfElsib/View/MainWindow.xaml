@@ -5,29 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestWpfElsib" xmlns:viewmodel="clr-namespace:TestWpfElsib.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="525">
+        Title="MainWindow" Height="450" Width="900">
     <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="addButton" Content="Добавить"  Command="{Binding AddCommand}" />
-                <Button x:Name="removeButton" Content="Удалить" Command="{Binding RemoveCommand}" CommandParameter="{Binding SelectedMaterial}" />
-                <Button x:Name="exitButton" Content="Выход" Click="exitButtonClick" />
-            </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Margin ="10">
+                <StackPanel Orientation="Horizontal" Margin ="10">
+                    <Button x:Name="addButton" Content="Добавить" Command="{Binding AddCommand}" Margin ="0 0 20 0" Width="150"/>
+                    <Button x:Name="removeButton" Content="Удалить" Command="{Binding RemoveCommand}" CommandParameter="{Binding SelectedMaterial}" Width="150" />
+                    <Button x:Name="exitButton" Content="Выход" Click="exitButtonClick" Margin ="20 0 0 0" Width="150" />
+                </StackPanel>
                 <ListView Name="materialsList" ItemsSource="{Binding Materials}" SelectedItem="{Binding SelectedMaterial}" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Code}" Width="100">код</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="250">наименование материала</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Width="150">стоимость</GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-            <StackPanel  DataContext="{Binding SelectedMaterial}">
-                <TextBlock Text="Выбранный элемент"  />
-                <TextBlock Text="Модель" />
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Code}" Width="100">код</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="250">наименование материала</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Width="150">стоимость</GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+            <StackPanel Margin ="10" DataContext="{Binding SelectedMaterial}">
+                <TextBlock Text="Выбранный элемент" Margin ="0 0 0 15" />
+                <TextBlock Text="Код:" Width="300" />
+                <TextBox Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="Наименование материала:" />
                 <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
-                
+                <TextBlock Text="Стоимость:" />
+                <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StackPanel>
     </Grid>

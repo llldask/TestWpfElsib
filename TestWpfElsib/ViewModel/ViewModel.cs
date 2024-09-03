@@ -14,6 +14,8 @@ namespace TestWpfElsib.ViewModel
     public class ViewModel : INotifyPropertyChanged
     {
         private Material selectedMaterial;
+
+        private Material newMaterial;
         public ObservableCollection <Material> Materials { get; set; }
 
 
@@ -25,7 +27,7 @@ namespace TestWpfElsib.ViewModel
                 return addCommand ??
                   (addCommand = new RelayCommand(obj =>
                   {
-                      Material material = new Material() { Name="jhj"};
+                      Material material = new Material();
                       Materials.Insert(0, material);
                       SelectedMaterial = material;
                   }));
@@ -59,6 +61,17 @@ namespace TestWpfElsib.ViewModel
                 OnPropertyChanged("SelectedMaterial");
             }
         }
+
+        public Material NewMaterial
+        {
+            get { return newMaterial; }
+            set
+            {
+                newMaterial = value;
+                OnPropertyChanged("NewMaterial");
+            }
+        }
+
 
         public ViewModel ()
         {

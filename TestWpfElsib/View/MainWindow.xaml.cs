@@ -29,11 +29,6 @@ namespace TestWpfElsib
             DataContext = new ViewModel.ViewModel();
         }
 
-        private void createButtonClick(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void exitButtonClick(object sender, RoutedEventArgs e)
         {
             
