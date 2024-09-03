@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TestWpfElsib.ViewModel;
 
 namespace TestWpfElsib
 {
@@ -20,9 +21,23 @@ namespace TestWpfElsib
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new ViewModel.ViewModel();
+        }
+
+        private void createButtonClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void exitButtonClick(object sender, RoutedEventArgs e)
+        {
+            
+            this.Close();
         }
     }
 }

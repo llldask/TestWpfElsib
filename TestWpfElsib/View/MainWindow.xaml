@@ -3,10 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TestWpfElsib"
+        xmlns:local="clr-namespace:TestWpfElsib" xmlns:viewmodel="clr-namespace:TestWpfElsib.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="525">
     <Grid>
-        
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="addButton" Content="Добавить"  Command="{Binding AddCommand}" />
+                <Button x:Name="removeButton" Content="Удалить" Command="{Binding RemoveCommand}" CommandParameter="{Binding SelectedMaterial}" />
+                <Button x:Name="exitButton" Content="Выход" Click="exitButtonClick" />
+            </StackPanel>
+                <ListView Name="materialsList" ItemsSource="{Binding Materials}" SelectedItem="{Binding SelectedMaterial}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Code}" Width="100">код</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="250">наименование материала</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Width="150">стоимость</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+            <StackPanel  DataContext="{Binding SelectedMaterial}">
+                <TextBlock Text="Выбранный элемент"  />
+                <TextBlock Text="Модель" />
+                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
